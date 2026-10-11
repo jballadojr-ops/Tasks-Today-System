@@ -1,0 +1,23 @@
+
+body {
+    background-color: #f1f5f9;
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #1d4ed8;
+    color: white;
+    padding: 25px;
+}
+
+nav {
+    background-color: white;
+    padding: 15px;
+}
+
+.card {
+    background-color: white;
+    padding: 25px;
+    margin: 25px;
+    border-radius: 12px;
+}
