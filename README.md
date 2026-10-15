@@ -1,5 +1,18 @@
 # CodeIgniter 4 Application Starter
 
+## Deploy on Render
+
+This repository includes a Render Blueprint (`render.yaml`) for the Docker-based web service.
+
+1. Push this repository to GitHub or GitLab.
+2. In the Render Dashboard, choose **New > Blueprint**, connect the repository, and apply the Blueprint.
+3. When prompted, provide `MYSQL_HOST`, `MYSQL_DATABASE`, `MYSQL_USER`, and `MYSQL_PASSWORD` for a reachable MySQL server. `MYSQL_PORT` defaults to `3306`.
+4. After the service deploys, open its `onrender.com` URL.
+
+The app's home, tasks, and profile pages need the MySQL tables `tasks` and `users`; `/about` is used as the deploy health check because it does not query the database. This repository does not include migrations or provision a database, so create the tables in your MySQL server before using those pages. Keep database credentials in Render environment variables, not in `.env` or source control.
+
+The Docker image serves HTTP on Render's default port `10000`. For a standalone web service, the Blueprint does not create a database; connect it to your existing MySQL server or add a separately managed database.
+
 ## What is CodeIgniter?
 
 CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.

@@ -194,6 +194,12 @@ class Database extends Config
     {
         parent::__construct();
 
+        $this->default['hostname'] = env('MYSQL_HOST', $this->default['hostname']);
+        $this->default['username'] = env('MYSQL_USER', $this->default['username']);
+        $this->default['password'] = env('MYSQL_PASSWORD', $this->default['password']);
+        $this->default['database'] = env('MYSQL_DATABASE', $this->default['database']);
+        $this->default['port']     = (int) env('MYSQL_PORT', $this->default['port']);
+
         // Ensure that we always set the database group to 'tests' if
         // we are currently running an automated test suite, so that
         // we don't overwrite live data on accident.

@@ -8,12 +8,16 @@ ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
 
 RUN sed -ri 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf && a2dismod mpm_event mpm_worker 2>/dev/null || true
 
+# Render's default web service port is 10000.
+RUN sed -ri 's/Listen 80/Listen 10000/' /etc/apache2/ports.conf \
+    && sed -ri 's/:80>/:10000>/' /etc/apache2/sites-available/*.conf
+
 WORKDIR /var/www/html
 
 COPY . .
 
 RUN composer install --no-dev --optimize-autoloader && chown -R www-data:www-data writable && chmod -R 775 writable
 
-EXPOSE 80
+EXPOSE 10000
 
 CMD ["apache2-foreground"]
